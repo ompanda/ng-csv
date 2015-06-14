@@ -116,8 +116,8 @@ module.exports = function (grunt) {
       },
       pages: {
         options: {
-          remote: 'git@github.com:asafdav/ng-csv.git',
-          branch: 'gh-pages'
+          remote: 'https://github.com/ompanda/ng-csv.git',
+          branch: 'master'
         }
       }
     }
@@ -132,11 +132,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-build-control');
+ // grunt.loadNpmTasks('grunt-build-control');
 
   grunt.registerTask('test', ['jshint', 'karma:unit']);
   grunt.registerTask('default', ['jshint:beforeConcat', 'concat', 'jshint:afterConcat', 'uglify']);
   grunt.registerTask('livereload', ['default', 'watch']);
-  grunt.registerTask('deploy', ['clean:dist', 'copy:dist', 'buildcontrol:pages']);
+  grunt.registerTask('deploy', ['clean:dist', 'copy:dist']);
 
 };

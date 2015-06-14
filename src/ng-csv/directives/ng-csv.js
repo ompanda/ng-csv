@@ -82,6 +82,24 @@ angular.module('ngCsv.directives').
       link: function (scope, element, attrs) {
         function doClick() {
           var charset = scope.charset || "utf-8";
+            //IE 9 and below
+            if (isIEBelow10()) {
+                var a = document.createElement('a');
+                var frame = document.createElement('iframe');
+                document.body.appendChild(frame);
+
+                frame.contentWindow.document.open("text/html", "replace");
+                frame.contentWindow.document.write(scope.csv);
+                frame.contentWindow.document.close();
+                frame.contentWindow.focus();
+                frame.contentWindow.document.execCommand('SaveAs', true, scope.getFilename());
+
+                document.body.removeChild(frame);
+                return true;
+            }
+
+            //IE 10+
+
           var blob = new Blob([scope.csv], {
             type: "text/csv;charset="+ charset + ";"
           });
@@ -102,6 +120,12 @@ angular.module('ngCsv.directives').
             }, null);
           }
         }
+
+          //function to return whether browser is below IE 10 or not
+          function isIEBelow10() {
+              var myNav = navigator.userAgent.toLowerCase();
+              return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1],10) < 10 : false;
+          }
 
         element.bind('click', function (e) {
           scope.buildCSV().then(function (csv) {
