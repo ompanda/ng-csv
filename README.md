@@ -1,5 +1,8 @@
-ngCsv - Export to CSV using AngularJS
+ngCsv - Export to CSV using AngularJS with IE 9 support
 ======
+
+Added support for IE 9 for downloading CSV files.
+
 
 An AngularJS simple directive that turns arrays and objects into downloadable CSV files,
 
@@ -73,7 +76,7 @@ Supported Browsers
 | Firefox 20+     | Yes           |
 | Chrome 14+      | Yes           |
 | Safari          | No            |
-| IE 10+          | Yes           |
+| IE 9+          | Yes           |
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/asafdav/ng-csv/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
